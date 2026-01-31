@@ -1,0 +1,13 @@
+<h2>Chatbot</h2>
+<input id="q"/>
+<button onclick="ask()">Ask</button>
+<pre id="a"></pre>
+
+<script>
+    function ask() {
+        const q = document.getElementById("q").value;
+        fetch('/api/chat?query=' + q, { method: 'POST' })
+            .then(r => r.json())
+            .then(d => document.getElementById("a").innerText = d.answer);
+    }
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Summary</h2>
+<textarea id="text" rows="6" cols="50"></textarea><br/>
+<button onclick="summarize()">Summarize</button>
+
+<pre id="out"></pre>
+
+<script>
+    function summarize() {
+        const text = document.getElementById("text").value;
+        fetch('/api/summary', {
+            method: 'POST',
+            headers: {'Content-Type':'text/plain'},
+            body: text
+        })
+            .then(r => r.json())
+            .then(d => document.getElementById("out").innerText = d.summary);
+    }
+</script>
+</body>
+</html>
